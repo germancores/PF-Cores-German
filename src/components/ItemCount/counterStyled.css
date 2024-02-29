@@ -1,0 +1,27 @@
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+.counter p {
+  font-size: 25px;
+}
+
+.counter button {
+  width: 35px;
+  height: 34px;
+  margin: 10px;
+  font-size: 20px;
+  border-radius: 50px;
+  border: transparent;
+  background-color: #563d71;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.counter button:hover {
+  background-color: #b08cd8;
+  transform: scale(1.01);
+  cursor: pointer;
+}

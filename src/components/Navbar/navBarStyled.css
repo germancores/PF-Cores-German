@@ -1,0 +1,24 @@
+.navbar-light .navbar-nav .nav-link,
+.navbar-light .navbar-brand, .link, .navlink
+.navbar-light .navbar-nav .nav-item.dropdown:hover .nav-link,
+.navbar-light .navbar-nav .nav-item.dropdown:hover .nav-link.dropdown-toggle,
+.navbar-light .navbar-nav .nav-item.dropdown:hover .dropdown-menu a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.container-logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.logo {
+  object-fit: contain;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}

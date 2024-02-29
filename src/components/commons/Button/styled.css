@@ -1,0 +1,31 @@
+.btn {
+  background-color: #563d71;
+  color: white;
+  border-radius: 8px;
+  border: 1px solid #dacbeb;
+  padding: 10px 10px;
+  cursor: pointer;
+  display: flex;
+  gap: 5px;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.btn:hover {
+  background-color: #b08cd8;
+  transform: scale(1.01);
+  cursor: pointer;
+}
+
+/* Estilo para botones deshabilitados */
+.btn[disabled] {
+  background-color: #ccc;
+  color: #999; 
+  cursor: not-allowed; 
+ width: 100%;
+}
+
+

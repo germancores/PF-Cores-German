@@ -1,0 +1,17 @@
+.containerCart .cartIcon {
+    font-size: 40px;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  .cartNumber{
+  position:absolute;
+  font-size: 23px;
+  font-weight: 500;
+  top: -12px;
+  right: -10px;
+  color: #ffffff;
+  }
+  .containerCart{
+    position: relative;
+  
+  }
