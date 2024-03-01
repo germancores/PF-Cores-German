@@ -28,7 +28,12 @@ function BasicExample() {
             <Link to="/">
             <Nav.Link href='#home'>Inicio</Nav.Link>
             </Link>
-            <Nav.Link href="#link">Productos</Nav.Link>
+            <Link to="/Contacto">
+            <Nav.Link href='contact'>Contacto</Nav.Link>
+            </Link>
+            <Link to="/">
+            <Nav.Link href="#products">Productos</Nav.Link>
+            </Link>
             <NavDropdown title="Categorias" id="basic-nav-dropdown">
             <NavLink to="/category/console">
               <NavDropdown.Item href="#consolas">Consolas</NavDropdown.Item>
