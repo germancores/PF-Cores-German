@@ -5,6 +5,7 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import { Routes, Route } from 'react-router-dom';
 import Contacto from './components/Contacto/Contacto';
+import Cart from './components/Cart/Cart';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/item/:itemId" element={<ItemDetailContainer />} />
           <Route path="*" element={<div> ERROR: 404, La página no existe</div>} />
           <Route path="/Contacto" element={<Contacto />} />
+          <Route path="/Cart" element={<Cart />} />
         </Routes>
     </>
   );
