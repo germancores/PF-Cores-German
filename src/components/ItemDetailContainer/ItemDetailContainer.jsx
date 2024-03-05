@@ -6,11 +6,9 @@ import './styles.css';
 import { useParams } from 'react-router-dom';
 import Spinner from '../commons/Spinner/Spinner';
 import CartContext from '../../context/CartContext';
+import { doc, getDoc, getFirestore } from 'firebase/firestore';
 
 function ItemDetailContainer() {
-  const { itemsCart } = useContext(CartContext);
-  console.log(itemsCart);
-
   const { itemId } = useParams();
   const [productDetail, setProductDetail] = useState({
     data: null,
@@ -19,20 +17,36 @@ function ItemDetailContainer() {
   });
 
   useEffect(() => {
-    setProductDetail({ loading: true });
-    getProductById(itemId)
-      .then((res) => setProductDetail({ data: res, loading: false }))
-      .catch((error) => {
+    const fetchProductDetail = async () => {
+      const db = getFirestore();
+      const itemDocRef = doc(db, 'productos', itemId);
+
+      try {
+        setProductDetail({ loading: true });
+        const itemDocSnapshot = await getDoc(itemDocRef);
+
+        if (itemDocSnapshot.exists()) {
+          const itemData = itemDocSnapshot.data();
+          setProductDetail({ data: itemData, loading: false });
+        } else {
+          setProductDetail({ error: true, loading: false });
+        }
+      } catch (error) {
         console.error(error);
         setProductDetail({ error: true, loading: false });
-      });
+      }
+    };
+
+    fetchProductDetail();
   }, [itemId]);
 
-  if (productDetail.loading)
+  if (productDetail.loading) {
     return <Spinner isLoading={productDetail.loading} />;
+  }
 
-  if (productDetail.error)
+  if (productDetail.error) {
     return <h1>¡Ha ocurrido un error, intentelo nuevamente!</h1>;
+  }
 
   return (
     <div className="containerDetail">

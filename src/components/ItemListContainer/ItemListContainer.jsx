@@ -7,27 +7,41 @@ import ItemList from '../ItemList/ItemList';
 import { useParams } from 'react-router-dom';
 import Spinner from '../commons/Spinner/Spinner';
 import './Styled.css';
+import {collection, getDocs, getFirestore, query, where} from 'firebase/firestore'
 
-function ItemListContainer({ greeting }) {
+
+
+const ItemListContainer = ({ greeting }) => {
   const [items, setItems] = useState([]);
   const { categoryId } = useParams();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const asyncFunc = categoryId ? getProductsByCategory : getProducts;
-      setIsLoading(true);
+    const fetchData = async () => {
+      const db = getFirestore();
+      const itemsCollection = collection(db, 'productos');
+      let filteredQuery;
+
+      if (categoryId) {
+        const categoryFilter = where('category', '==', categoryId);
+        filteredQuery = query(itemsCollection, categoryFilter);
+      } else {
+        filteredQuery = itemsCollection;
+      }
+
       try {
-        const res = await asyncFunc(categoryId);
-        setItems(res);
-        setIsLoading(false);
-      } catch (err) {
-        console.log(err.message);
+        const snapshot = await getDocs(filteredQuery);
+        const docs = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        setItems(docs);
+      } catch (error) {
+        console.error('Error fetching data from Firebase:', error);
+      } finally {
         setIsLoading(false);
       }
     };
-    fetchProducts();
-  }, [categoryId, setIsLoading]);
+
+    fetchData();
+  }, [categoryId]);
 
   if (isLoading) return <Spinner isLoading={isLoading} />;
 
@@ -37,6 +51,6 @@ function ItemListContainer({ greeting }) {
       <ItemList items={items} />
     </div>
   );
-}
+};
 
 export default ItemListContainer;

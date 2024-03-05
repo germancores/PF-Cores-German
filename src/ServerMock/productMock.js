@@ -30,9 +30,7 @@ export const products = [
     },
   ];
   export const productosFail = [];
-  
-  //Promesa
-  
+    
   export const getProducts = () => {
     return new Promise((resolve, reject) => {
       if (products.length === 0) {
