@@ -6,7 +6,7 @@ import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailCont
 import { Routes, Route } from 'react-router-dom';
 import Contacto from './components/Contacto/Contacto';
 import Cart from './components/Cart/Cart';
-
+import Checkout from './Checkout/Checkout';
 function App() {
   return (
     <>
@@ -23,6 +23,7 @@ function App() {
           <Route path="*" element={<div> ERROR: 404, La página no existe</div>} />
           <Route path="/Contacto" element={<Contacto />} />
           <Route path="/Cart" element={<Cart />} />
+          <Route path="/Checkout" element={<Checkout />} />
         </Routes>
     </>
   );
