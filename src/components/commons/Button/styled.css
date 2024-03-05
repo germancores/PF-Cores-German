@@ -20,7 +20,6 @@
   cursor: pointer;
 }
 
-/* Estilo para botones deshabilitados */
 .btn[disabled] {
   background-color: #ccc;
   color: #999; 
